@@ -1,9 +1,9 @@
-from pydantic import BaseModel
-from typing import Optional, Literal
 from datetime import datetime
+from typing import Optional, Literal
+from models.mongo_base import MongoBaseModel
 
 
-class Computer(BaseModel):
+class Computer(MongoBaseModel):
     # 사용자 정보
     user_name: str
     user_email: str

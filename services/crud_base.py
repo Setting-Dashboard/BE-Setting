@@ -1,5 +1,5 @@
-from typing import Type, Optional, List, Dict, Any
 from bson import ObjectId
+from typing import Type, Optional, Dict, Any
 
 
 class CrudBase:
@@ -20,10 +20,16 @@ class CrudBase:
         return cls.model(**doc) if doc else None
 
     @classmethod
-    def list(cls, filters: Optional[Dict[str, Any]] = None) -> List[Any]:
+    def list(cls, filters: Optional[Dict[str, Any]] = None):
         filters = filters or {}
         docs = cls._col().find(filters)
-        return [cls.model(**doc) for doc in docs]
+
+        results = []
+        for doc in docs:
+            doc["_id"] = str(doc["_id"])  # 🔥 핵심
+            results.append(cls.model(**doc))
+
+        return results
 
     @classmethod
     def update(cls, doc_id: str, data: Dict[str, Any]) -> bool:

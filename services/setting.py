@@ -8,3 +8,4 @@ from datetime import datetime
 
 class SettingService(CrudBase):
     model = Setting
+    

@@ -1,6 +1,8 @@
+from datetime import datetime
 from pydantic import BaseModel, Field
 from typing import List, Optional, Literal, ClassVar, Dict
-from datetime import datetime
+from models.mongo_base import MongoBaseModel
+
 
 class QuickAction(BaseModel):
     action: str # 액션 이름
@@ -13,7 +15,7 @@ class CheckListItem(BaseModel):
     label: str  # 체크리스트 아이템
     checked: bool = False   # True: 완료 / False: 미완료
 
-class Setting(BaseModel):
+class Setting(MongoBaseModel):
     # 사용자 정보
     user_name: str
     user_email: str
