@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException
-from typing import List
 from services.setting import SettingService
 from models.setting import Setting
 
@@ -26,6 +25,11 @@ def get_setting(setting_id: str):
 @router.get("/", summary="List settings")
 def list_settings():
     return SettingService.list()
+
+
+@router.patch("/", summary="Bulk update settings")
+def update_settings(payload: dict):
+    return SettingService.update(payload.get("updates", []))
 
 
 @router.delete("/{setting_id}", summary="Delete setting")
