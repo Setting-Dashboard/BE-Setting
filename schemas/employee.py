@@ -6,6 +6,7 @@ from datetime import datetime
 class EmployeeCreateSchema(BaseModel):
     name: str
     email: str
+    role: str
 
     okta_user_id: str
     ldap_id: str
@@ -20,6 +21,7 @@ class EmployeeCreateSchema(BaseModel):
 class EmployeeUpdateSchema(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
+    role: Optional[str] = None
 
     okta_user_id: Optional[str] = None
     ldap_id: Optional[str] = None
